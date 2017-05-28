@@ -1,0 +1,62 @@
+<aura:component controller="kanbanController">
+    <aura:attribute name="objName" type="String"/>
+    <aura:attribute name="objFields" type="String[]"/>
+    <aura:attribute name="kanbanPicklistField" type="String"/>
+    
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    <aura:attribute name="kanbanData" type="kanbanController.kanbanWrap"/>
+    
+    <div class="slds-page-header">
+        <div class="slds-media">
+            <div class="slds-media__figure">
+                <span class="slds-icon_container" title="Description of icon when needed">
+                    <lightning:icon iconName="utility:kanban" variant="bare" size="small"/>
+                </span>
+            </div>
+            <div class="slds-media__body">
+                <h1 class="slds-page-header__title slds-truncate slds-align-middle" title="Kanban - Drag &amp; Drop">Kanban - Drag &amp; Drop : {!v.objName}</h1>
+            </div>
+        </div>
+    </div>
+    <div style="padding:0.5rem;">
+    
+    
+    <aura:iteration var="pickVal" items="{!v.kanbanData.pickVals}">
+        <div class="stageContainer" style="{!'width:calc(100vw/'+(v.kanbanData.pickVals.length+0.5)+')'}">
+            <div class="slds-grid slds-grid_vertical">
+                <div>
+                    <div class="slds-media slds-no-space slds-has-divider_bottom-space slds-media_center" style="{!'width:calc(100vw/'+(v.kanbanData.pickVals.length+1)+')'}">
+                        <div class="slds-media__body">
+                            <h1 class="slds-page-header__title slds-align-middle slds-truncate" title="{!pickVal}">{!pickVal}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ul ondrop="{!c.drop}" ondragover="{!c.allowDrop}" class="slds-has-dividers_around-space dropZone" data-Pick-Val="{!pickVal}" style="height:70vh;overflow-y:auto;">
+                <aura:iteration var="objRecord" items="{!v.kanbanData.records}">
+                    <aura:if isTrue="{!pickVal == objRecord.StageName}">
+                        <li class="slds-item slds-m-around_small" draggable="true" ondragstart="{!c.drag}" id="{!objRecord.Id}">
+                            <article class="slds-tile slds-tile_board">
+                                <h3 class="slds-truncate" title="{!objRecord.Name}">
+                                    <a href="javascript:void(0);" onclick="{!c.doView}">
+                                        <span class="slds-truncate" id="{!objRecord.Id}">{!objRecord.Name}</span>
+                                    </a>
+                                </h3>
+                                <div class="slds-tile__detail slds-text-body_small">
+                                    <p class="slds-text-heading_medium">Amount: ${!objRecord.Amount}</p>
+                                    <p class="slds-truncate" title="{!objRecord.Account.Name}">
+                                        <a href="javascript:void(0);" onclick="{!c.doView}">
+                                            <span class="slds-truncate" id="{!objRecord.AccountId}">{!objRecord.Account.Name}</span>
+                                        </a>
+                                    </p>
+                                    <p class="slds-truncate" title="{!'Closing ' +objRecord.CloseDate}">Closing {!'Closing ' +objRecord.CloseDate}</p>
+                                </div>
+                            </article>
+                        </li>
+                    </aura:if> 
+                </aura:iteration>
+            </ul>
+        </div>
+    </aura:iteration>
+   </div>
+</aura:component>
