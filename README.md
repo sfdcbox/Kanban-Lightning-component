@@ -6,3 +6,12 @@ Custom Lightning component with drag and drop
 
 Usage:
 <c:dragAndDrop objLabel="Opportunity" objName="Opportunity" objFields="['Name', 'AccountId', 'Account.Name', 'CloseDate', 'StageName', 'Amount']" kanbanPicklistField="StageName"/>
+and change the fields api names in the cards!!
+
+
+Thanks & Regards
+Sravan Kumar G
+Passonate Developer
+sfdc.gsk@gmail.com
+http://www.sfdcbox.com/
+https://www.facebook.com/sfdcbox
