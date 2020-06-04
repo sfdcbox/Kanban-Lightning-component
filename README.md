@@ -11,7 +11,7 @@ and change the fields api names in the cards!!
 
 Thanks & Regards  
 Sravan Kumar G  
-Passonate Developer  
+Passionate Developer  
 sfdc.gsk@gmail.com  
 http://www.sfdcbox.com/  
 https://www.facebook.com/sfdcbox
